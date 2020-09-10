@@ -1,0 +1,30 @@
+<form action="" method="post" enctype="multipart/form-data">
+    Pilih file gambar :
+    <input type="file" name="upload">
+    <input type="submit" name="kirim" value="simpan">
+</form>
+
+<?php 
+
+    if (isset($_POST['kirim'])) {
+       $file=$_FILES['upload'];
+
+       var_dump($_FILES['upload']);
+       echo '<br>';
+
+       foreach ($file as $key => $value) {
+         echo $key. ' => '. $value;
+         echo '<br>';
+       }
+
+       $pilihsatu=$_FILES['upload']['name'];
+       $temp=$_FILES['upload']['tmp_name'];
+       echo $pilihsatu.' = '.$temp;
+       echo '<br>';
+
+       move_uploaded_file($temp,'gambar/'.$pilihsatu);
+    }
+
+
+
+?>
